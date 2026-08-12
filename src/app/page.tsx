@@ -1,69 +1,157 @@
-import Image from "next/image";
+import Link from 'next/link';
+import Footer from '@/components/Footer';
+
+const STEPS = [
+  {
+    icon: 'upload_file',
+    title: 'Upload your lecture',
+    body: 'Drop in a PDF of your slides or notes. We pull out the text and figure out what actually matters.',
+  },
+  {
+    icon: 'style',
+    title: 'Swipe through the cards',
+    body: 'Dense academic writing becomes 5-8 bite-sized cards in plain language — the way you actually read.',
+  },
+  {
+    icon: 'route',
+    title: 'See where it takes you',
+    body: 'Every upload adds to your skill profile and updates the jobs you are qualified for, and the gaps left.',
+  },
+];
+
+const FEATURES = [
+  {
+    icon: 'auto_awesome',
+    title: 'Learning cards, not walls of text',
+    body: 'Gemini rewrites your material as an Instagram-style carousel. Concepts first, jargon defined, ordered the way you should learn them.',
+    accent: 'from-[#8083ff] to-[#c0c1ff]',
+  },
+  {
+    icon: 'plagiarism',
+    title: 'Answers you can actually trust',
+    body: 'Ask anything about your document. Retrieval grounds every answer in your own material and cites the exact page — no invented facts.',
+    accent: 'from-[#4cd7f6] to-[#03b5d3]',
+  },
+  {
+    icon: 'workspace_premium',
+    title: 'Coursework mapped to real roles',
+    body: 'Skills are extracted from what you upload and matched against a curated set of entry-level roles, showing what you have and what is missing.',
+    accent: 'from-emerald-400 to-teal-400',
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel text-xs text-[#c7c4d7] mb-8 slide-up">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#4cd7f6] pulse-glow" />
+          AI-powered social learning for university students
+        </div>
+
+        <h1
+          className="text-4xl sm:text-6xl font-bold leading-[1.1] tracking-tight text-[#dfe2f1] slide-up"
+          style={{ fontFamily: 'var(--font-outfit)' }}
+        >
+          Your lectures are boring.
+          <br />
+          <span className="bg-gradient-to-r from-[#8083ff] via-[#c0c1ff] to-[#4cd7f6] bg-clip-text text-transparent">
+            Your career doesn&apos;t have to be.
+          </span>
+        </h1>
+
+        <p className="mt-6 text-lg text-[#c7c4d7] max-w-2xl mx-auto leading-relaxed slide-up">
+          SkillRot turns your course material into bite-sized visual cards you will actually remember —
+          then shows you exactly which jobs that knowledge is qualifying you for.
+        </p>
+
+        <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center slide-up">
+          <Link
+            href="/upload"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#8083ff] to-[#4cd7f6] text-[#0f131d] font-semibold hover:opacity-90 transition-all hover:scale-[1.02]"
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>upload_file</span>
+            Upload your first lecture
+          </Link>
+          <Link
+            href="/roadmap"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl glass-panel text-[#dfe2f1] font-medium glow-hover transition-all"
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>route</span>
+            See the career roadmap
+          </Link>
+        </div>
+
+        <p className="mt-5 text-xs text-[#908fa0]">No account needed · PDF slides and notes · Under 30 seconds</p>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid gap-5 md:grid-cols-3">
+          {FEATURES.map((feature) => (
+            <div key={feature.title} className="glass-panel rounded-2xl p-6 glow-hover transition-all">
+              <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${feature.accent} flex items-center justify-center mb-4`}>
+                <span className="material-symbols-outlined text-[#0f131d]" style={{ fontSize: '22px' }}>
+                  {feature.icon}
+                </span>
+              </div>
+              <h3 className="text-base font-bold text-[#dfe2f1] mb-2" style={{ fontFamily: 'var(--font-outfit)' }}>
+                {feature.title}
+              </h3>
+              <p className="text-sm text-[#c7c4d7] leading-relaxed">{feature.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2
+          className="text-2xl sm:text-3xl font-bold text-center text-[#dfe2f1] mb-3"
+          style={{ fontFamily: 'var(--font-outfit)' }}
+        >
+          Three steps, under three minutes
+        </h2>
+        <p className="text-center text-[#908fa0] text-sm mb-12">From a PDF you dread to a career path you can see.</p>
+
+        <ol className="relative grid gap-8 md:grid-cols-3">
+          {STEPS.map((step, index) => (
+            <li key={step.title} className="relative">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-9 h-9 rounded-full glass-panel flex items-center justify-center text-sm font-bold text-[#c0c1ff]">
+                  {index + 1}
+                </span>
+                <span className="material-symbols-outlined text-[#4cd7f6]" style={{ fontSize: '22px' }}>
+                  {step.icon}
+                </span>
+              </div>
+              <h3 className="text-base font-semibold text-[#dfe2f1] mb-2" style={{ fontFamily: 'var(--font-outfit)' }}>
+                {step.title}
+              </h3>
+              <p className="text-sm text-[#908fa0] leading-relaxed">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="glass-panel rounded-2xl p-8 sm:p-10 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#8083ff] via-[#4cd7f6] to-[#8083ff]" />
+          <h2 className="text-2xl font-bold text-[#dfe2f1] mb-3" style={{ fontFamily: 'var(--font-outfit)' }}>
+            Ready to stop re-reading slide 47?
+          </h2>
+          <p className="text-sm text-[#c7c4d7] mb-6 max-w-md mx-auto">
+            Upload one lecture and see your first learning cards and job matches in about twenty seconds.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/upload"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-[#8083ff] to-[#4cd7f6] text-[#0f131d] font-semibold hover:opacity-90 transition-opacity"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Get started
+            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>arrow_forward</span>
+          </Link>
         </div>
-      </main>
+      </section>
+
+      <Footer />
     </div>
   );
 }
